@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson - AI Python Tutor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="heading">Lesson: {{ lesson_title }}</h1>
+        <p>{{ lesson_content }}</p>
+
+        <form action="/quiz/{{ lesson_id }}" method="GET" class="form">
+            <button type="submit" class="btn">Start Quiz</button>
+        </form>
+    </div>
+    <script src="{{ url_for('static', filename='js/lesson.js') }}"></script>
+
+</body>
+</html>

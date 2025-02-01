@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Challenges</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Python Coding Challenges</h1>
+    </header>
+    <main>
+        <textarea id="code-input" placeholder="Write your Python code here..."></textarea>
+        <button onclick="submitCode()">Submit Code</button>
+        <pre id="output"></pre>
+    </main>
+    <footer>
+        <a href="/">Back to Home</a>
+    </footer>
+
+    <script>
+        function submitCode() {
+            const code = document.getElementById("code-input").value;
+            fetch('/challenges', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ code })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    document.getElementById("output").innerText = `Error: ${data.error}`;
+                } else {
+                    document.getElementById("output").innerText = `Result: ${JSON.stringify(data.output)}`;
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - AI Python Tutor</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="heading">Quiz: {{ lesson_title }}</h1>
+        
+        <form action="/lesson/{{ lesson_id }}/submit_quiz" method="POST" class="form">
+            <label>1. What is a variable?</label>
+            <input type="radio" id="q1a" name="q1" value="a"> A place to store data
+            <input type="radio" id="q1b" name="q1" value="b"> A loop
+
+            <label>2. What does a loop do?</label>
+            <input type="radio" id="q2a" name="q2" value="a"> Repeat a block of code
+            <input type="radio" id="q2b" name="q2" value="b"> Store data
+
+            <button type="submit" class="btn">Submit Quiz</button>
+        </form>
+    </div>
+    <script src="{{ url_for('static', filename='js/quiz.js') }}"></script>
+
+</body>
+</html>

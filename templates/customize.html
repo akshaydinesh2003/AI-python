@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customize Tutor</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Customize Your AI Tutor</h1>
+    </header>
+    <main>
+        <form id="customize-form">
+            <label for="character">Choose a Character:</label>
+            <select id="character" name="character">
+                <option value="default">Default Tutor</option>
+                <option value="robot">Friendly Robot</option>
+                <option value="wizard">Code Wizard</option>
+                <option value="superhero">Super Coder</option>
+            </select>
+            <button type="button" onclick="submitCustomization()">Save</button>
+        </form>
+        <p id="response-message"></p>
+    </main>
+    <footer>
+        <a href="/">Back to Home</a>
+    </footer>
+
+    <script>
+        function submitCustomization() {
+            const character = document.getElementById("character").value;
+            fetch('/customize', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ character })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("response-message").innerText = data.message;
+            });
+        }
+    </script>
+</body>
+</html>

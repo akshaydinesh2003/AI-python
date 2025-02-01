@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roadmap - AI Python Tutor</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="heading">Your Learning Roadmap</h1>
+        <p>Choose a topic to start learning!</p>
+
+        <div class="roadmap">
+            <button class="topic-btn" onclick="location.href='/lesson/1'">Variables</button>
+            <button class="topic-btn" onclick="location.href='/lesson/2'">Loops</button>
+            <button class="topic-btn" onclick="location.href='/lesson/3'">Functions</button>
+            <button class="topic-btn" onclick="location.href='/lesson/4'">Lists</button>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/roadmap.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/roadmap-navigation.js') }}"></script>
+</body>
+</html>

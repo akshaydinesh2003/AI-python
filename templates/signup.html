@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup - AI Python Tutor</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="heading">Join Python Tutor!</h1>
+        <form action="/signup" method="POST" class="form">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="Email">Email</label>
+            <input type="Email" id="Email" name="Email" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit" class="btn">Sign Up</button>
+        </form>
+        <p>Already have an account? <a href="/login" class="link">Login</a></p>
+    </div>
+    <script src="{{ url_for('static', filename='js/forms.js') }}"></script>
+
+</body>
+</html>

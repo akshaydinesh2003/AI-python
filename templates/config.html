@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Key Configuration</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Update API Key</h1>
+    </header>
+    <main>
+        <form id="api-key-form">
+            <label for="api-key">Enter New API Key:</label>
+            <input type="text" id="api-key" name="api-key" required>
+            <button type="button" onclick="updateApiKey()">Update</button>
+        </form>
+        <p id="response-message"></p>
+    </main>
+    <footer>
+        <a href="/">Back to Home</a>
+    </footer>
+
+    <script>
+        function updateApiKey() {
+            const apiKey = document.getElementById("api-key").value;
+            fetch('/config', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ api_key: apiKey })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("response-message").innerText = data.message;
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - AI Python Tutor</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="heading">Welcome to Python Tutor!</h1>
+        <form action="/login" method="POST" class="form">
+            <label for="Email">Email:</label>
+            <input type="email" name="Email" id="Email" required>
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" required>
+            <button type="submit" class="btn">Login</button>
+        </form>
+        <p>Don't have an account? <a href="/signup" class="link">Sign up</a></p>
+    </div>
+    <script src="{{ url_for('static', filename='js/forms.js') }}"></script>
+</body>
+</html>
