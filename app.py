@@ -3,6 +3,9 @@ from flask_pymongo import PyMongo
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin, LoginManager, login_user, login_required, logout_user, current_user
 from bson import ObjectId
+import os
+
+port = int(os.getenv("PORT", 4000))
 
 app = Flask(__name__)
 
