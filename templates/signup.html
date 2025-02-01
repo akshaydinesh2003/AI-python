@@ -3,27 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup - AI Python Tutor</title>
+    <title>Signup</title>
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-    <div class="container">
-        <h1 class="heading">Join Python Tutor!</h1>
-        <form action="/signup" method="POST" class="form">
+    <div class="form-container">
+        <h2>Signup</h2>
+        <form method="POST">
             <label for="username">Username</label>
-            <input type="text" id="username" name="username" required>
-
-            <label for="Email">Email</label>
-            <input type="Email" id="Email" name="Email" required>
-
+            <input type="text" name="username" placeholder="Enter your username" required>
+            
+            <label for="email">Email</label>
+            <input type="email" name="email" placeholder="Enter your email" required>
+            
             <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
-
-            <button type="submit" class="btn">Sign Up</button>
+            <input type="password" name="password" placeholder="Enter your password" required>
+            
+            <button type="submit">Sign Up</button>
         </form>
-        <p>Already have an account? <a href="/login" class="link">Login</a></p>
+        <p>Already have an account? <a href="{{ url_for('login') }}">Login</a></p>
     </div>
-    <script src="{{ url_for('static', filename='js/forms.js') }}"></script>
-
 </body>
 </html>
