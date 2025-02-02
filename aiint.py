@@ -12,6 +12,10 @@ def generate_ai_response(prompt):
         )
         # Extract the generated text from the response
         generated_text = response.candidates[0].content.parts[0].text
-        return generated_text
+        
+        # Clean up the response to remove unwanted formatting
+        cleaned_text = generated_text.replace('**', '').replace('*', '')
+        
+        return cleaned_text
     except Exception as e:
         return f"An error occurred while generating the response: {e}"
