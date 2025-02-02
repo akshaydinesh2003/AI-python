@@ -22,13 +22,6 @@ bcrypt = Bcrypt(app)
 
 # Routes
 
-# Function to process text and replace symbols
-def process_text(text):
-    # Replace * with <strong> for bold
-    text = text.replace('*', '<strong>').replace('*', '</strong>', 1)
-    # Replace ** with <b> for bold
-    text = text.replace('**', '<b>').replace('**', '</b>', 1)
-    return text
 
 @app.route('/')
 def home():
