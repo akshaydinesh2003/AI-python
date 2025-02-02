@@ -1,92 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lesson {{ lesson_index + 1 }}</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            line-height: 1.6;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        h1, h2 {
-            text-align: center;
-        }
-        .lesson-content {
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
-        form {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            font-weight: bold;
-        }
-        input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            margin-top: 5px;
-        }
-        button {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            border: none;
-            background-color: #4CAF50;
-            color: white;
-            font-size: 16px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        .back-btn {
-            display: block;
-            margin: 10px 0;
-            text-align: center;
-            text-decoration: none;
-            color: #007BFF;
-        }
-        .back-btn:hover {
-            text-decoration: underline;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Lesson {{ lesson_index + 1 }}</h1>
-        <div class="lesson-content">
-            <h2>Lesson Content</h2>
-            <p>{{ lesson_content }}</p>
-        </div>
+<!-- Lesson Content Display -->
+ <link rel="stylesheet" href="/static/css/style.css">
 
-        <form method="POST">
-            <div class="form-group">
-                <label for="answer">Question:</label>
-                <p><strong>{{ question['question'] }}</strong></p>
-                <input type="text" id="answer" name="answer" placeholder="Enter your answer here" required>
-            </div>
-            <button type="submit">Submit Answer</button>
-        </form>
+ <style>
+    /* Center the white container and make it dynamic */
+.container {
+    width: 80%;  /* Adjust width as needed */
+    max-width: 900px;  /* Maximum width of the container */
+    margin: 0 auto;  /* Centers the container horizontally */
+    background-color: #fff;  /* White background */
+    padding: 20px;  /* Space around the content */
+    border-radius: 10px;  /* Optional rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Soft shadow for better visual effect */
+    word-wrap: break-word;  /* Ensure long words break */
+    line-height: 1.6;  /* For better readability */
+}
 
-        <a class="back-btn" href="{{ url_for('generate_roadmap') }}">← Back to Roadmap</a>
+/* Add some margins to paragraphs inside the container */
+.container p {
+    margin-bottom: 15px;
+}
+
+/* Style the page background */
+body {
+    background-color: #f4f7f6;  /* Soft background color */
+    font-family: Arial, sans-serif;  /* Change font for better readability */
+    padding: 50px 0;  /* Add vertical space around the container */
+}
+
+ </style>
+<!-- Lesson Content Display -->
+<div class="container">
+    <h2>{{ lesson_title }}</h2>
+    <div>
+        {% for paragraph in lesson_content %}
+            <p>{{ paragraph }}</p>
+        {% endfor %}
     </div>
-</body>
-</html>
+
+    <!-- Quiz Question -->
+    <form method="POST">
+        <label>{{ question.question }}</label>
+        <input type="text" name="answer">
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if lesson_index > 0 %}
+        <a href="{{ url_for('lesson', lesson_index=lesson_index-1) }}">Previous Lesson</a>
+    {% endif %}
+    {% if lesson_index < roadmap|length - 1 %}
+        <a href="{{ url_for('lesson', lesson_index=lesson_index+1) }}">Next Lesson</a>
+    {% endif %}
+</div>
