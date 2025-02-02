@@ -3,22 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roadmap - AI Python Tutor</title>
-    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Python Learning Roadmap</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .roadmap-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .roadmap-levels {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .roadmap-level {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        .roadmap-level.completed {
+            background-color: #4caf50;
+            color: white;
+        }
+        .roadmap-level.locked {
+            background-color: #bdbdbd;
+            cursor: not-allowed;
+        }
+        .roadmap-level:hover {
+            transform: scale(1.1);
+        }
+        .lesson-details {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1 class="heading">Your Learning Roadmap</h1>
-        <p>Choose a topic to start learning!</p>
 
-        <div class="roadmap">
-            <button class="topic-btn" onclick="location.href='/lesson/1'">Variables</button>
-            <button class="topic-btn" onclick="location.href='/lesson/2'">Loops</button>
-            <button class="topic-btn" onclick="location.href='/lesson/3'">Functions</button>
-            <button class="topic-btn" onclick="location.href='/lesson/4'">Lists</button>
+    <h1>Your Python Learning Roadmap</h1>
+
+    <div class="roadmap-container">
+        <div class="roadmap-levels">
+            {% for lesson in roadmap %}
+            <a href="{{ url_for('lesson', lesson_index=loop.index0) }}" 
+   class="{% if loop.index0 > user_progress %}disabled{% endif %}">
+    <div class="roadmap-level {% if loop.index0 <= user_progress %}completed{% else %}locked{% endif %}">
+        {{ loop.index }}
+    </div>
+</a>
+            {% endfor %}
+        </div>
+
+        <div class="lesson-details">
+            <h3>Current Lesson: {{ roadmap[user_progress] if roadmap else "No lessons available" }}</h3>
+            <p>Complete this lesson to move to the next!</p>
         </div>
     </div>
-    <script src="{{ url_for('static', filename='js/roadmap.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/roadmap-navigation.js') }}"></script>
+
+    <script>
+        // This part is to show how the user might interact with the levels
+        // JavaScript to handle click events or level progression can be added
+    </script>
+
 </body>
 </html>
+
+
+
+
+
